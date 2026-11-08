@@ -246,7 +246,7 @@ Prototype assumptions:
 
 - Bedroom-based area proxies: 50/75/100/125 m² for 1/2/3/4+ bedrooms.
 - Heat-loss coefficients: apartment 0.8, townhouse 1.2, house 1.8 W/m²/K.
-- Low/high effective heat-loss scenarios: 0.6×/1.6× central.
+- Displayed effective heat-loss scenarios: 1.0×/1.6× the reference model, covering reference to higher heat loss. This tighter range omits lower-loss scenarios and is not a confidence interval.
 - Gas efficiency 85%; baseboard 100%.
 - Heat-pump COP: 3 above 5°C, 2 from −10°C through 5°C, 1.5 below −10°C; disclose the electric-only assumption.
 - Central AC COP 3; room AC COP 2.5 with modeled room area capped at 20 m².
@@ -412,7 +412,7 @@ Use deep-teal text on cream, sage, soft green, and white surfaces. Do not use em
 
 - **Welcome:** warm cream background, a generous white rounded panel, concise Whatswatt introduction with “Know what's watt with your energy”, and a deep-teal start button. Optional subtle sage/soft-green background shapes can provide the softness of the reference without requiring new imagery.
 - **Onboarding:** show one question per step in a white card, a slim progress indicator, and large rounded answer tiles. Selected answers use soft green with a deep-teal border and checkmark. Use a labeled native range control with minus/plus buttons for temperature and a large Celsius readout; preserve keyboard operation.
-- **Savings dashboard:** place the emissions-avoided range in the first and most prominent white card, with kg CO₂e/month and its model-estimate label directly beneath it. Put monthly dollar savings in a smaller sage-accented card. Follow with Home/Away/Sleep temperature cards, then the two cost bars, then the collapsed methodology section. Energy units stay within methodology details. Use a separately labeled card for completed-action ranges and prominent, dismissible forecast-advisory cards; do not merge their figures into potential savings.
+- **Savings dashboard:** place the emissions-avoided range in the first and most prominent white card, with kg CO₂e beside the large number and the monthly period/model-estimate label directly beneath it. Put monthly dollar savings in a smaller sage-accented card. Follow with Home/Away/Sleep temperature cards, then the two cost bars, then the collapsed methodology section. Energy units stay within methodology details. Use a separately labeled card for completed-action ranges and prominent, dismissible forecast-advisory cards; do not merge their figures into potential savings.
 - **Temperature plan:** use a large circular temperature readout inspired by the reference dial, explicitly labeled as a recommendation. Keep it informational rather than suggesting live thermostat control. Below it, show rounded time-block cards with temperature, period, reason, and relevant limitations. Add an accessible Yes/Partly/No segmented radio group to actionable recommendations.
 - **Weekly outlook:** use compact rounded daily cards with Toronto dates, weather icons, high/low temperatures, and short recommendations. Use text and an icon for special considerations rather than colour alone. Add an expandable weekly actions recap with separate Yes/Partly counts and self-reported impact ranges; no new navigation destination.
 - **Profile:** reuse the onboarding controls and card styling, with a clear save action and feedback that recommendations have been updated.

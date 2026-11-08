@@ -8,9 +8,11 @@ test('baseboard gets reasonable away reductions',()=>{assert(plan({...sample,hea
 test('building control never produces actionable heating savings',()=>{const bs=plan({...sample,control:'building'},f);assert(bs.every(b=>!b.actionable));assert.equal(bs.reduce((a,b)=>a+b.cad,0),0)});
 test('no AC never creates fictional controls or consumption',()=>{const hot={...f,hours:f.hours.map(h=>({...h,temp:33}))};for(const cool of ['none','fan']){const bs=plan({...sample,cool},hot);assert(bs.every(b=>!b.actionable&&b.energy===0&&b.baseline===0))}assert(alerts(hot).some(a=>a.id.startsWith('heat')))});
 test('extreme cold suppresses setbacks',()=>{const cold={...f,hours:f.hours.map(h=>({...h,temp:-20}))};assert(plan(sample,cold).every(b=>b.target===21));assert(alerts(cold).length>0)});
-test('validation and formatting',()=>{assert(validProfile(sample));assert(!validProfile({...sample,temp:NaN}));assert(!validProfile({...sample,wake:'99:00'}));assert.equal(range(10,'$'),'$6–$16')});
+test('validation and formatting',()=>{assert(validProfile(sample));assert(!validProfile({...sample,temp:NaN}));assert(!validProfile({...sample,wake:'99:00'}));assert.equal(range(10,'$'),'$10–$16')});
 test('demo contains ended Thursday block and no future feedback needed',()=>{const bs=plan(sample,f);assert(bs.some(b=>b.period==='away'&&b.end===Date.parse('2026-11-05T17:00:00-05:00')&&b.end<demoNow))});
 import {canReport,contribution,overlaps} from '../src/impact.ts';
 test('feedback accepts only ended blocks; partly is half, no is zero',()=>{const b=plan(sample,f).find(b=>b.period==='away')!;assert(!canReport(b,b.end-1));assert(canReport(b,b.end));assert.equal(contribution(b,'yes',b.start,b.end,'cad'),b.cad);assert.equal(contribution(b,'partly',b.start,b.end,'cad'),b.cad*.5);assert.equal(contribution(b,'no',b.start,b.end,'cad'),0);assert(overlaps(b,{...b,id:'new'}));assert(!overlaps(b,{...b,start:b.end,end:b.end+1000}))});
 
-test('small dollar estimates use honest upper bounds instead of zero-dollar labels',()=>{assert.equal(range(0,'$'),'Less than $1');assert.equal(range(.2,'$'),'Less than $1');assert.equal(range(1,'$'),'Less than $2');assert.equal(range(0),'0');assert.equal(range(NaN,'$'),'Unavailable')});
+test('small dollar estimates use honest upper bounds instead of zero-dollar labels',()=>{assert.equal(range(0,'$'),'Less than $1');assert.equal(range(.2,'$'),'Less than $1');assert.equal(range(1,'$'),'$1–$2');assert.equal(range(0),'0');assert.equal(range(NaN,'$'),'Unavailable')});
+
+test('ranges cover reference to higher-loss scenarios consistently, including negative values',()=>{assert.equal(range(10),'10–16');assert.equal(range(10,'$'),'$10–$16');assert.equal(range(-10),'-16–-10');assert.equal(range(.5,'$'),'Less than $1')});
