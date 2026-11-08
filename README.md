@@ -18,7 +18,7 @@ npm test
 npm run build
 ```
 
-Select **Explore a sample home** for a fixed-clock walkthrough with two sample responses. Complete onboarding, open Plan, and record the ended Thursday away block. Weekly impact updates independently from potential monthly savings. Exit demo restores the normal household.
+Select **Explore a sample home** for a fixed-clock walkthrough with two sample responses. Complete onboarding, open Plan, and record the ended Thursday away block. The demo holds outdoor temperature at −15°C all week. This triggers the cold advisory and suppresses setbacks: heating demand rises, while baseline and recommended usage match. Reported-action counts update, but savings remain “Less than $1” and 0 kg CO₂e. Exit demo restores the normal household.
 
 Data lives in this browser's local storage. Open-Meteo is the only remote data request. No accounts or thermostat controls.
 
